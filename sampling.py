@@ -29,7 +29,7 @@ if mnist_dc or mri_dc:
     Loss = dc_loss[0]  # SSIM_loss(), nn.MSELoss()
     optimizer = optim.Adam(dc_stepsize.parameters(), lr=dc_lr, betas=(0.9, 0.999))
     print(f'CHOSEN LOSS OF DC {dc_loss[1]}')
-    x = observation.repeat(dc_img_patch,1,1,1)
+    x = observation.repeat(dc_img_patch_mri,1,1,1) if set_type=='mri' else observation
 
 torch.set_grad_enabled(False)
 with tqdm.tqdm(total=steps, desc=f'Reverse SDE') as pbarv:

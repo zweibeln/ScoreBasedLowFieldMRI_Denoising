@@ -48,10 +48,12 @@ sigma_max = config.mnist.sigma_max if config.set_type == 'mnist' else config.mri
 sigma_min = config.mnist.sigma_min if config.set_type == 'mnist' else config.mri.sigma_min  # Min noise std
 sigma = (sigma_min*((sigma_max/sigma_min)**dt)).float().to('cpu')  # Corresponding sigmas throughout process
 langevin = config.sampling.langevin  # Boolean (default=False), determines if corrector steps performed
-dc_loss = config.sampling.dc_loss.ssim  # Data consistency Loss
+dc_loss = config.sampling.dc_loss.mse  # Data consistency Loss
 dc_lr = config.sampling.dc_lr  # Data consistency learning rate
 dc_f = config.sampling.dc_f  # MRI data field strength for data consistency stage
-dc_img_patch = config.sampling.dc_img_patch  # Image patch 
+dc_img_patch_mri = config.sampling.dc_img_patch_mri  # Image patch for MRI
+dc_img_patch_mnist = config.sampling.dc_img_patch_mnist  # Image patch for MRI
+
 
 
 
